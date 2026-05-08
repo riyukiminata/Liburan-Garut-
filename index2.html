@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary Trip Garut</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #2C5F2D;     /* Hijau alam */
+            --secondary: #97BC62;   /* Hijau muda */
+            --bg: #F4F6F0;          /* Off-white */
+            --text: #333333;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        p.subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Countdown Timer Design */
+        .timer-container {
+            background: linear-gradient(135deg, var(--primary), #1a3c1b);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(44, 95, 45, 0.2);
+            display: flex;
+            gap: 25px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            min-width: 60px;
+        }
+
+        .time-box span {
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        .time-box small {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* Timeline Design */
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Garis vertikal timeline */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50px;
+            border-radius: 5px;
+        }
+
+        .container {
+            padding: 10px 0 30px 100px;
+            position: relative;
+            width: 100%;
+        }
+
+        /* Titik point pada garis timeline */
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--card-bg);
+            border: 4px solid var(--primary);
+            top: 25px;
+            left: 42px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 20px 25px;
+            background: var(--card-bg);
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .time {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: inline-block;
+            background-color: #f0f5ea;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .desc {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #444;
+            display: flex;
+            align-items: center;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+
+        /* Sorotan acara malam */
+        .night-event {
+            background: linear-gradient(135deg, #2b2b2b, #4a4a4a);
+            color: white;
+        }
+        
+        .night-event .desc {
+            color: #fff;
+        }
+        
+        .night-event .time {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        /* Responsif untuk HP */
+        @media screen and (max-width: 600px) {
+            .timer-container {
+                padding: 15px 20px;
+                gap: 15px;
+            }
+            .time-box span {
+                font-size: 1.5rem;
+            }
+            .timeline::after {
+                left: 30px;
+            }
+            .container {
+                padding-left: 70px;
+            }
+            .container::after {
+                left: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🗻 Itinerary Garut</h1>
+        <p class="subtitle">Kamis, 14 Mei 2026</p>
+    </header>
+
+    <div class="timer-container">
+        <div class="time-box">
+            <span id="days">00</span>
+            <small>Hari</small>
+        </div>
+        <div class="time-box">
+            <span id="hours">00</span>
+            <small>Jam</small>
+        </div>
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <small>Menit</small>
+        </div>
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <small>Detik</small>
+        </div>
+    </div>
+
+    <div class="timeline">
+        <div class="container">
+            <div class="content">
+                <span class="time">01.00 - 03.00</span>
+                <p class="desc"><span class="emoji">😴</span> Istirahat di rumah Mia</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">03.00 - 03.30</span>
+                <p class="desc"><span class="emoji">🎒</span> Persiapan berangkat ke Papandayan</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">03.30 - 05.30</span>
+                <p class="desc"><span class="emoji">🚙</span> Otw Papandayan + Sarapan Surabi 🥞</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">05.30 - 08.00</span>
+                <p class="desc"><span class="emoji">♨️</span> Berendam air panas Papandayan</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">08.00 - 10.00</span>
+                <p class="desc"><span class="emoji">🌹</span> Kebun Mawar / Kamojang</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">10.00 - 12.30</span>
+                <p class="desc"><span class="emoji">🕌</span> Solat zuhur + Main santai</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">12.30 - 13.30</span>
+                <p class="desc"><span class="emoji">🚗</span> Otw Gula Padi (Tujuan makan)</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">13.30 - 14.00</span>
+                <p class="desc"><span class="emoji">🍽️</span> Makan siang</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">14.00 - 15.30</span>
+                <p class="desc"><span class="emoji">🏡</span> Otw pulang ke rumah Mia</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <span class="time">16.00 - Selesai</span>
+                <p class="desc"><span class="emoji">🎣</span> Main bebas atau mancing di kolam ikan rumah Mia</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content night-event">
+                <span class="time">Malam Hari</span>
+                <p class="desc"><span class="emoji">🔥</span> Acara Bakar-bakar santai</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set tanggal tujuan (14 Mei 2026, jam 01:00:00)
+        const tripDate = new Date("May 14, 2026 01:00:00").getTime();
+
+        // Update timer setiap 1 detik
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = tripDate - now;
+
+            // Perhitungan waktu
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Format angka agar selalu dua digit (01, 02, dst)
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            // Jika waktu sudah lewat
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.querySelector(".timer-container").innerHTML = "<h2>🎉 Waktunya Berangkat! 🎉</h2>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
